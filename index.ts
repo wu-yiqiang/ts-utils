@@ -216,3 +216,38 @@ export const formatNumber = (number: Number) => {
 export const toLocaleUpperCase = (str: String) => {
     return str.toLocaleUpperCase();
 };
+
+
+export const deounce = (func, delay: number = 1000) => {
+  let timer
+  return function (...args) {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, delay)
+  }
+}
+
+export const throttle = (func, interval = 1000) => {
+    let lastTime = 0
+    return function(...args) {
+        let now = Date.now()
+        if (now - lastTime >= interval) {
+          lastTime = now
+          func.apply(this.args)
+        }
+    }
+}
+
+export const memorize = (fn) => {
+    let cache = {}
+    return (...args) => {
+        const key = JSON.stringify(args);
+        if (!cache[key]) {
+          cache[key] = fn(...args)
+        } else {
+          return cache[key]
+        }
+    }
+    
+}
