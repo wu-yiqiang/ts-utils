@@ -49,24 +49,6 @@ export function getTreeItem(tree: any[], nameId: string): any {
     return null;
 }
 
-export const showCurrentLang = (
-    item: any,
-    cn: boolean,
-    en: boolean,
-    ar: boolean,
-) => {
-    if (isEmpty(item)) return '';
-    if (cn) return item.nameZh;
-    if (en) return item.nameEn;
-    if (ar) {
-        if (item.nameAr) {
-            return item.nameAr;
-        } else {
-            return item.nameEn;
-        }
-    }
-};
-
 // 数组对象去重
 export const uniqueListObj = (arr: [], attr: any) => {
     const hash = {};
@@ -144,6 +126,7 @@ export const isExitIntersection = (
     return array1?.filter((item: any) => array2.includes(item))?.length;
 };
 
+// 滚动到顶部
 export const scrollToTop = (selector: string) => {
     const element = document.querySelector(selector);
     if (element) {
