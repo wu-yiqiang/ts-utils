@@ -234,7 +234,7 @@ export const throttle = (func, interval = 1000) => {
         let now = Date.now()
         if (now - lastTime >= interval) {
           lastTime = now
-          func.apply(this.args)
+          func.apply(this, args)
         }
     }
 }
