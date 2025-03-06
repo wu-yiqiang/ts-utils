@@ -1,4 +1,3 @@
-const tokenKey = 'as67A&%6C9^YUas1&';
 import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from '@/utils/encrypt';
 import { TOKEN_KEY } from '@/enums/cacheEnum';
 const noEncryptKey = [TOKEN_KEY];
