@@ -50,7 +50,7 @@ export function getTreeItem(tree: any[], nameId: string): any {
 
 export const getNodePath = (tree, targetId) => {
     const path = [];
-    function traverse(node, id) {
+    function traverse(node: any, id: any) {
         if (node && Array.isArray(node)) {
             for (let i = 0; i < node.length; i++) {
                 const currentId = node[i].title;
