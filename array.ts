@@ -30,3 +30,7 @@ const deepFlatten = (arr: any) => arr.reduce((a:[], v: never) => a.concat(Array.
 const difference = (a:[], b: []) => { const s = new Set(b); return a.filter(x => !s.has(x)); };
 // 两点之间的距离
 const distance = (x0: number, y0: number, x1: number, y1: number) => Math.hypot(x1 - x0, y1 - y0);
+
+
+// 数组去重
+export const uniqueArray = (array: []) => [...new Set(array)]

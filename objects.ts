@@ -5,3 +5,6 @@ export const clearNull = (obj) => {
         .reduce((a, k) => ({ ...a, [k]: obj[k] }), {});
     return newObj;
 };
+
+// 检查对象是否为空
+export const objectIsEmpty = (obj: object) => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object

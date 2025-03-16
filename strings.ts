@@ -39,3 +39,25 @@ const palindrome = (str: string) => {
 
 // 转义特殊字符
 const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+//从url获取参数并转为对象
+export const getUrlParameters = (URL: string) => JSON.parse(`{"${decodeURI(URL.split('?')[1]).replace(/"/g, '"').replace(/&/g, '","').replace(/=/g, '":"')}"}`)
+
+// 反转字符串
+export const reverse = (str: string) => str.split('').reverse().join('')
+
+//生成随机十六进制
+export const randomHexColor = () =>
+  `#${Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padEnd(6, '0')}`
+
+
+// 文字复制到剪贴板
+export const copyText = async (text) => await navigator.clipboard.writeText(text)
+
+// 获取选定的文本
+export const getSelectedText = () => window.getSelection().toString()
+
+// 将 RGB 转换为十六进制
+export const rgbToHex = (r, g, b) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)

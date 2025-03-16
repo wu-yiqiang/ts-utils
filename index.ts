@@ -132,3 +132,11 @@ export const memorize = (fn) => {
     }
     
 }
+
+// 检查当前选项卡是否在后台
+export const isTabActive = () => !document.hidden 
+
+// 检测元素是否处于焦点
+export const elementIsInFocus = (el) => el === document.activeElement
+// 检查设备类型
+export const judgeDeviceType = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|OperaMini/i.test(navigator.userAgent) ? 'Mobile' : 'PC')

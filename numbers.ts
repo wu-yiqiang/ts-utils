@@ -13,4 +13,10 @@ const factorial = (n: number) => n <= 1 ? 1 : n * factorial(n - 1);
 
 // 斐波那契数组生成器
 const fibonacci = (n: number) =>
-  Array(n).fill(0).reduce((acc, val, i) => acc.concat(i > 1 ? acc[i - 1] + acc[i - 2] : i), []);
+    Array(n).fill(0).reduce((acc, val, i) => acc.concat(i > 1 ? acc[i - 1] + acc[i - 2] : i), []);
+
+// 将华氏温度转换为摄氏温度
+export const fahrenheitToCelsius = (fahrenheit) => ((fahrenheit - 32) * 5) / 9
+
+// 将摄氏温度转华氏温度
+export const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32
