@@ -33,3 +33,26 @@ export const distance = (x0: number, y0: number, x1: number, y1: number) => Math
 
 // 数组去重
 export const uniqueArray = (array: []) => [...new Set(array)]
+
+export const listToTree = (list: any[], key = 'parentId', cd?: Function) => {
+    const recursion = (list: any[], parentId: any) => {
+        if (!parentId) return [];
+        const arr = list
+            .filter((item) => item[key] === parentId)
+            .map((item) => ({
+                ...item,
+                ...(cd?.(item) || {}),
+                children: recursion(list, item.id),
+            }));
+        return arr.length ? arr : null;
+    };
+    return list
+        .filter((a) => !a[key])
+        .map((_) => {
+            return {
+                ..._,
+                ...(cd?.(_) || {}),
+                children: recursion(list, _.id),
+            };
+        });
+};

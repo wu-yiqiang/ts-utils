@@ -1,4 +1,4 @@
-
+import { toLocaleUpperCase } from './strings'
 // 获取列表数据
 export const getLists = async (
     getList: Function,
@@ -177,3 +177,108 @@ export const exitScreen = () => {
         }
     }
 }
+
+// 下载文件
+export const downBlobFileByPath = async ({
+    path,
+    fileName,
+    blob,
+}: {
+    path?: string;
+    fileName: string;
+    blob?: Blob;
+}) => {
+    let _blob = blob;
+    if (path) {
+        const response = await fetch(path);
+        _blob = await response.blob();
+    }
+
+    const url = window.URL.createObjectURL(_blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(link);
+};
+
+// 平滑滚动到顶部
+export const smoothScrollToTop = (selector: string) => {
+    const element = document.querySelector(selector);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollTo(0, 0);
+    }
+};
+
+export const findNodeById = (
+    tree: Array<any>,
+    key: number | string,
+    keyId = 'id',
+    isToLocaleUpperCase = false,
+) => {
+    for (const node of tree) {
+        if (!isToLocaleUpperCase && node[keyId] === key) {
+            return node;
+        }
+
+        if (
+            isToLocaleUpperCase &&
+            toLocaleUpperCase(node[keyId]) === toLocaleUpperCase(key as string)
+        ) {
+            return node;
+        }
+        if (node.children && node.children.length > 0) {
+            const foundNode = findNodeById(
+                node.children,
+                key,
+                keyId,
+                isToLocaleUpperCase,
+            );
+            if (foundNode) {
+                return foundNode;
+            }
+        }
+    }
+
+    return undefined;
+};
+
+/**
+ * 查找树状数组中的节点并返回其全路径
+ * @param tree 树状数组
+ * @param targetId 目标节点的 ID
+ * @returns 节点的全路径数组
+ */
+export const getNodeFullPath = (
+    tree: any[],
+    targetId: string | number,
+    keyId = 'id',
+): any[] => {
+    const path: string[] = [];
+
+    const traverse = (node: any, id: string | number): boolean => {
+        if (node && Array.isArray(node)) {
+            for (let i = 0; i < node.length; i++) {
+                const currentId = node[i][id];
+                if (currentId === targetId) {
+                    path.unshift(node[i]);
+                    return true;
+                }
+                if (node[i].children && traverse(node[i].children, id)) {
+                    path.unshift(node[i]);
+                    return true;
+                }
+            }
+        } else if (node && node[id] === targetId) {
+            path.unshift(node);
+            return true;
+        }
+        return false;
+    };
+
+    traverse(tree, keyId);
+    return path;
+};

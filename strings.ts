@@ -6,7 +6,7 @@ export const omitCharacters = (strs: string, num = 16) => {
     return str;
 };
 export const toLocaleUpperCase = (str: String) => {
-    return str?.toLocaleUpperCase();
+    return str?.toLocaleUpperCase() ?? '';
 };
 // 排列
 const anagrams = (str: string): object => {

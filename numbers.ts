@@ -15,3 +15,19 @@ export const fibonacci = (n: number) =>
 export const fahrenheitToCelsius = (fahrenheit) => ((fahrenheit - 32) * 5) / 9
 // 将摄氏温度转华氏温度
 export const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32
+// 文件大小转换
+export const formatFileSize = (fileSize: number) => {
+    let temp = '';
+    if (fileSize < 1024) {
+        return fileSize + 'B';
+    } else if (fileSize < 1024 * 1024) {
+        temp = (fileSize / 1024).toFixed(2);
+        return temp + 'KB';
+    } else if (fileSize < 1024 * 1024 * 1024) {
+        temp = (fileSize / (1024 * 1024)).toFixed(2);
+        return temp + 'MB';
+    } else {
+        temp = (fileSize / (1024 * 1024 * 1024)).toFixed(2);
+        return temp + 'GB';
+    }
+};
