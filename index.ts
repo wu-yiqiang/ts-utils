@@ -140,3 +140,40 @@ export const isTabActive = () => !document.hidden
 export const elementIsInFocus = (el) => el === document.activeElement
 // 检查设备类型
 export const judgeDeviceType = () => (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|OperaMini/i.test(navigator.userAgent) ? 'Mobile' : 'PC')
+
+// 获取当前页面滚动距离
+export const getScrollPosition = (el = window) => ({
+    x: el.pageXOffset !== undefined ? el.pageXOffset : el?.scrollLeft,
+    y: el.pageYOffset !== undefined ? el.pageYOffset : el?.scrollTop,
+})
+
+
+// 进入全屏
+export const fullScreen = () => {
+    let el = document.documentElement
+    let rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen
+    //typeof rfs != "undefined" && rfs
+    if (rfs) {
+        rfs.call(el)
+    } else if (typeof window.ActiveXObject !== "undefined") {
+        let wscript = new ActiveXObject("WScript.Shell")
+        if (wscript != null) {
+            wscript.SendKeys("{F11}")
+        }
+    }
+}
+
+// 退出全屏
+export const exitScreen = () => {
+    let el = document
+    let cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen
+    //typeof cfs != "undefined" && cfs
+    if (cfs) {
+        cfs.call(el)
+    } else if (typeof window.ActiveXObject !== "undefined") {
+        let wscript = new ActiveXObject("WScript.Shell")
+        if (wscript != null) {
+            wscript.SendKeys("{F11}")
+        }
+    }
+}
