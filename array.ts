@@ -56,3 +56,11 @@ export const listToTree = (list: any[], key = 'parentId', cd?: Function) => {
             };
         });
 };
+
+// 数组并集
+export const union = (arr1, arr2) => Array.from(new Set([...arr1, ...arr2]));
+// 数组交集
+export const cross = (arr1, arr2) => Array.from(new Set(arr1.filter((item) =>
+    arr2.includes(item))));
+// 数组差集
+export const diff = (arr1, arr2) => Array.from(new Set(union(arr1, arr2).filter((item) => !cross(arr1,arr2).includes(item))));
