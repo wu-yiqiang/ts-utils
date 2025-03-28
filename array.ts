@@ -22,8 +22,12 @@ export function countOccurrences<T extends any>(arr: T[], value: any): number {
     return arr.reduce((a, v) => v === value ? a + 1 : a + 0, 0);
 }
 // 两点之间的距离
-export function distance<T extends number>(x0: T, y0: T, x1: T, y1: T) {
-    return Math.hypot(x1 - x0, y1 - y0);
+interface Point<T extends number> {
+    x: T;
+    y: T;
+}
+export function distance<T extends number>(point1: Point<T>, point2: Point<T>): number {
+    return Math.hypot(point2.x - point1.x, point2.y - point1.y);
 }
 // 数组降维
 export const deepFlatten = (arr: any) => arr.reduce((a:[], v: never) => a.concat(Array.isArray(v) ? deepFlatten(v) : v), []);
