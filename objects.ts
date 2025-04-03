@@ -1,5 +1,5 @@
 // 清空对象空值的属性
-export const clearNull = (obj) => {
+export const clearNull = (obj: object) => {
     const newObj = Object.keys(obj)
         .filter((k) => ![null, '', undefined].includes(obj[k]))
         .reduce((a, k) => ({ ...a, [k]: obj[k] }), {});

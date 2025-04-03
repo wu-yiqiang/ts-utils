@@ -59,8 +59,8 @@
 // };
 
 // 查询某天是否为工作日
-export const isWeekday = (date) => date.getDay() % 6 !== 0
+export const isWeekday = (date: Date) => date.getDay() % 6 !== 0
 
 // 两日期之间相差的天数
-export const dayDiff = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
+export const dayDiff = (date1:Date, date2: Date) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
 

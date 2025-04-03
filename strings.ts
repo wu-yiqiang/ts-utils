@@ -1,3 +1,4 @@
+import { RangeNumber } from "./types/common";
 // 超出字符个数显示省略号
 export const omitCharacters = (strs: string, num = 16) => {
     if (!strs) return strs;
@@ -9,10 +10,12 @@ export const toLocaleUpperCase = (str: String) => {
     return str?.toLocaleUpperCase() ?? '';
 };
 // 排列
-const anagrams = (str: string): object => {
+const anagrams = (str: string): Array<string> => {
   if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
-  return str.split('').reduce((acc, letter, i) =>
-    acc.concat(anagrams(str.slice(0, i) + str.slice(i + 1))?.map((val: string) => letter + val)), []);
+  return str.split('').reduce((acc: string[], letter, i) => {
+    const newAnagrams = anagrams(str.slice(0, i) + str.slice(i + 1)).map((val: string) => letter + val);
+    return acc.concat(newAnagrams);
+  }, []);
 };
 // 大写每个单词首字母
 export const capitalizeEveryWord = (str: string) => str.replace(/\b[a-z]/g, (char: string) => char.toUpperCase());
@@ -37,9 +40,9 @@ export const randomHexColor = () =>
 // 文字复制到剪贴板
 export const copyText = async (text) => await navigator.clipboard.writeText(text)
 // 获取选定的文本
-export const getSelectedText = () => window.getSelection().toString()
+export const getSelectedText = () => window?.getSelection()?.toString()
 // 将 RGB 转换为十六进制
-export const rgbToHex = (r, g, b) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+export const rgbToHex = (r: RangeNumber<0, 255>, g: RangeNumber<0, 255>, b: RangeNumber<0, 255>) => '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 // 复制内容到用户剪切板
 export const copyToClipboard = (content: string) => {
   const textarea = document.createElement("textarea")

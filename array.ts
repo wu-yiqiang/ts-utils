@@ -1,3 +1,4 @@
+import { Point } from "./types/common";
 // 两个数组是否存在交集
 export function isExitIntersection(
     array1: (string | number)[],
@@ -22,19 +23,19 @@ export function countOccurrences<T extends any>(arr: T[], value: any): number {
     return arr.reduce((a, v) => v === value ? a + 1 : a + 0, 0);
 }
 // 两点之间的距离
-interface Point<T extends number> {
-    x: T;
-    y: T;
-}
-export function distance<T extends number>(point1: Point<T>, point2: Point<T>): number {
+export function distance<T extends Point>(point1: T, point2: T): number {
     return Math.hypot(point2.x - point1.x, point2.y - point1.y);
 }
 // 数组降维
-export const deepFlatten = (arr: any) => arr.reduce((a:[], v: never) => a.concat(Array.isArray(v) ? deepFlatten(v) : v), []);
+export const deepFlatten = (arr: any[]) => arr.reduce((a: any[], v: any) => a.concat(Array.isArray(v) ? deepFlatten(v) : v), []);
+
 // 数组之间的区别
-export const difference = (a:[], b: []) => { const s = new Set(b); return a.filter(x => !s.has(x)); };
+export const difference = (a: Array<number | string>, b: Array<number | string>) => {
+    const s = new Set(b);
+    return a.filter(x => !s.has(x));
+};
 // 数组差集
-export const diff = (arr1, arr2) => Array.from(new Set(union(arr1, arr2).filter((item) => !cross(arr1, arr2).includes(item))));
+export const diff = (arr1: Array<number | string>, arr2: Array<number | string>) => Array.from(new Set(union(arr1, arr2).filter((item) => !cross(arr1, arr2).includes(item))));
 // 数组去重
 export const uniqueArray = (array: Array<string| number>) => [...new Set(array)]
 export const listToTree = (list: any[], key = 'parentId', cd?: Function) => {
@@ -62,5 +63,5 @@ export const listToTree = (list: any[], key = 'parentId', cd?: Function) => {
 // 数组并集
 export const union = (arr1: Array<string | number>, arr2:Array<string | number>): Array<string | number> => Array.from(new Set([...arr1, ...arr2]));
 // 数组交集
-export const cross = (arr1, arr2) => Array.from(new Set(arr1.filter((item) =>
+export const cross = (arr1: Array<number | string>, arr2: Array<number | string>) => Array.from(new Set(arr1.filter((item) =>
     arr2.includes(item))));
