@@ -58,3 +58,8 @@ export const getQueryByName = (name: string) => {
   const query = new URLSearchParams(location.search)
   return decodeURIComponent(query.get(name) ?? '')
 }
+
+// 去掉字符串中的html元素标记
+export const removeTag = (fragment) => {
+  return new DOMParser().parseFromString(fragment, 'text/html').body.textContent || ''
+}

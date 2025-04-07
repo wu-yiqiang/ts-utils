@@ -64,3 +64,8 @@ export const isWeekday = (date: Date) => date.getDay() % 6 !== 0
 // 两日期之间相差的天数
 export const dayDiff = (date1:Date, date2: Date) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
 
+// 某个日期位于当年第几天
+export const dayOfYear = (date: Date): number => {
+  return Math.floor((Number(date) - Number(new Date(date.getFullYear(), 0, 0))) / 1000 / 60 / 60 / 24)
+}
+
