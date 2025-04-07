@@ -1,4 +1,9 @@
 import { toLocaleUpperCase } from './strings'
+export * from './strings'
+export * from './array'
+export * from './date'
+export * from './numbers'
+export * from './objects'
 // 获取列表数据
 export const getLists = async (
     getList: Function,
@@ -151,7 +156,7 @@ export const getScrollPosition = (el = window) => ({
 // 进入全屏
 export const fullScreen = () => {
     let el = document.documentElement
-    let rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen
+    let rfs = el?.requestFullScreen || el?.webkitRequestFullScreen || el?.mozRequestFullScreen || el?.msRequestFullScreen
     //typeof rfs != "undefined" && rfs
     if (rfs) {
         rfs.call(el)
@@ -166,7 +171,7 @@ export const fullScreen = () => {
 // 退出全屏
 export const exitScreen = () => {
     let el = document
-    let cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen
+    let cfs = el?.cancelFullScreen || el?.webkitCancelFullScreen || el?.mozCancelFullScreen || el?.exitFullScreen
     //typeof cfs != "undefined" && cfs
     if (cfs) {
         cfs.call(el)
