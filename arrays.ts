@@ -65,3 +65,19 @@ export const union = (arr1: Array<string | number>, arr2:Array<string | number>)
 // 数组交集
 export const cross = (arr1: Array<number | string>, arr2: Array<number | string>) => Array.from(new Set(arr1.filter((item) =>
     arr2.includes(item))));
+// 获取数组最后一项
+export const arrayLastItem = (array: Array<any>) => array.slice(-1)[0];
+// 查找数组中的最大数字
+export const maxNumber = (array: Array<number>) => Math.max(...array);
+// 计算数字数组的总和
+export const sumArray = (array: Array<number>) => array.reduce((total, num) => total + num, 0);
+// 打乱数组
+export const shuffleArray = (array: Array<any>) => array.sort(() => Math.random() - 0.5);
+// 生成指定范围内的数字数组
+export const rangeArray = (start: number, end: number) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
+// 合并两个数组
+export const mergedArray = (array1: Array<any>, array2: Array<any>) => [...array1, ...array2];
+
+
+
+

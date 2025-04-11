@@ -63,3 +63,9 @@ export const getQueryByName = (name: string) => {
 export const removeTag = (fragment) => {
   return new DOMParser().parseFromString(fragment, 'text/html').body.textContent || ''
 }
+// 随机IP V4地址
+export const generateRandomIP = () => {
+  return Array.from({ length: 4 }, () => Math.floor(Math.random() * 256)).join('.');
+}
+// 检查字符串是否包含子字符串
+export const containsSubstring = (string, substring) => string.includes(substring);

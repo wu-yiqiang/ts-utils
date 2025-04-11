@@ -31,3 +31,8 @@ export const formatFileSize = (fileSize: number) => {
         return temp + 'GB';
     }
 };
+
+// 检查数字是否为偶数
+export const isEven = number => number % 2 === 0;
+// 从数组中删除假值
+export const truthyValues = array => array.filter(Boolean);

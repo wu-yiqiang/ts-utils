@@ -1,6 +1,6 @@
 import { toLocaleUpperCase } from './strings'
 export * from './strings'
-export * from './array'
+export * from './arrays'
 export * from './date'
 export * from './numbers'
 export * from './objects'
@@ -287,3 +287,8 @@ export const getNodeFullPath = (
     traverse(tree, keyId);
     return path;
 };
+// 确定当前选项卡是否处于活动状态
+export const checkTabInView = () => !document.hidden
+// 检查元素是否处于焦点
+export const isFocus = (ele) => ele === document.activeElement
+
