@@ -23,8 +23,22 @@ export const capitalizeEveryWord = (str: string) => str.replace(/\b[a-z]/g, (cha
 export const capitalize = (str: string, lowerRest = false) => str.slice(0, 1).toUpperCase() + (lowerRest ? str.slice(1).toLowerCase() : str.slice(1));
 // 是否是回文字符串
 export const palindrome = (str: string) => {
+  if (Object.prototype.toString.call(str) !== '[object String]') return false;
   const s = str.toLowerCase().replace(/[\W_]/g,'');
   return s === s.split('').reverse().join('');
+}
+// 检查字符串是否是回文
+export const  isPalina = (str: string) => {
+  if (Object.prototype.toString.call(str) !== '[object String]') {
+    return false;
+  }
+  var len = str.length;
+  for (var i = 0; i < len / 2; i++) {
+    if (str[i] != str[len - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
 }
 // 转义特殊字符
 export const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -69,3 +83,7 @@ export const generateRandomIP = () => {
 }
 // 检查字符串是否包含子字符串
 export const containsSubstring = (string, substring) => string.includes(substring);
+// 去除连续字符串
+export const uniqStrings = (str: string) => {
+  return str.replace(/(\w)\1+/g, '$1')
+}
